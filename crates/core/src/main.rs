@@ -17,6 +17,10 @@ pub extern "C" fn load_user_code() {
 
     runtime::init_ruby();
 
+    // so, like, that's how you preload a Ruby file.
+    // Doesn't that mean you'd just preload the gems/requires?
+    // If Gemfile path, bundle install + `runtime::preload_files(bundle show --paths)`
+    // If require, load.
     if let Ok(preload_path) = env::var("RUVY_PRELOAD_PATH") {
         runtime::preload_files(preload_path);
     }
